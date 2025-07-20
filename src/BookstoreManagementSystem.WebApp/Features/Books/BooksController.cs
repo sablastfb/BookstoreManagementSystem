@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace WebApp.Features.Books;
+namespace BookstoreManagementSystem.WebApp.Features.Books;
 
 [Route("books")]
 public class BooksController : Controller

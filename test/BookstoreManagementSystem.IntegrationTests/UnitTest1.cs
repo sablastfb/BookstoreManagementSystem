@@ -1,6 +1,6 @@
 using sta;
 
-namespace IntegrationTests;
+namespace BookstoreManagementSystem.IntegrationTests;
 
 public class UnitTest1
 {

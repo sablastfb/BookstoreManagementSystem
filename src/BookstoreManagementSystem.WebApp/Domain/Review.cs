@@ -1,4 +1,4 @@
-﻿namespace BookstoreSystem.WebApp.Domain;
+﻿namespace BookstoreManagementSystem.WebApp.Domain;
 
 public class Review
 {

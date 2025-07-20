@@ -5,19 +5,19 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{982CDE9D-D46D-424D-A8F6-33DA1DF6F604}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "src\WebApp\WebApp.csproj", "{43117891-9A63-442A-97D7-EC8BE1568373}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreManagementSystem.WebApp", "src\BookstoreManagementSystem.WebApp\BookstoreManagementSystem.WebApp.csproj", "{43117891-9A63-442A-97D7-EC8BE1568373}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scheduler", "src\Scheduler\Scheduler.csproj", "{578AFA33-491D-4AC2-B1A9-6EA447BD6B9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreManagementSystem.Scheduler", "src\BookstoreManagementSystem.Scheduler\BookstoreManagementSystem.Scheduler.csproj", "{578AFA33-491D-4AC2-B1A9-6EA447BD6B9E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{93469F2D-CC2A-41B3-B071-2F91E1F2A75F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "test\UnitTests\UnitTests.csproj", "{58959444-18CA-4562-926F-FFCB69C7FA16}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreManagementSystem.UnitTests", "test\BookstoreManagementSystem.UnitTests\BookstoreManagementSystem.UnitTests.csproj", "{58959444-18CA-4562-926F-FFCB69C7FA16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "test\IntegrationTests\IntegrationTests.csproj", "{72BF064F-F877-434C-B092-624273694DD5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreManagementSystem.IntegrationTests", "test\BookstoreManagementSystem.IntegrationTests\BookstoreManagementSystem.IntegrationTests.csproj", "{72BF064F-F877-434C-B092-624273694DD5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utils", "utils", "{7353AE76-8453-4B63-995C-A9C3780EAB16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGenerator", "utils\DataGenerator\DataGenerator.csproj", "{0DBDAE61-2066-4E98-B280-71C8A06E2188}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreManagementSystem.DataGenerator", "utils\BookstoreManagementSystem.DataGenerator\BookstoreManagementSystem.DataGenerator.csproj", "{0DBDAE61-2066-4E98-B280-71C8A06E2188}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

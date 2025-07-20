@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Scheduler\Scheduler.csproj" />
-    <ProjectReference Include="..\..\src\WebApp\WebApp.csproj" />
+    <ProjectReference Include="..\..\src\BookstoreManagementSystem.Scheduler\BookstoreManagementSystem.Scheduler.csproj" />
+    <ProjectReference Include="..\..\src\BookstoreManagementSystem.WebApp\BookstoreManagementSystem.WebApp.csproj" />
   </ItemGroup>
 
 </Project>

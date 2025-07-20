@@ -1,4 +1,4 @@
-﻿namespace WebApp.Domain;
+﻿namespace BookstoreManagementSystem.WebApp.Domain;
 
 public class Author
 {
