@@ -7,7 +7,7 @@ namespace BookstoreManagementSystem.WebApp.Features.Authors;
 public class AuthorsController(IMediator mediator) : Controller
 {
   [HttpPost]
-  public Task<ArticleEnvelope> Create(
+  public Task<AuthorEnvelope> Create(
     [FromBody] Create.Command command,
     CancellationToken cancellationToken
   ) => mediator.Send(command, cancellationToken);

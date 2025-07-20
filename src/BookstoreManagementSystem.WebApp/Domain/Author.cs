@@ -3,7 +3,7 @@
 public class Author
 {
   public Guid Id { get; init; }
-  public string Name { get; init; } = string.Empty; 
+  public string? Name { get; init; } 
   public int BirthYear { get; init; } 
   public DateTime CreatedAt { get; init; }
   public DateTime UpdatedAt { get; set; }

@@ -10,9 +10,6 @@ builder.Services.AddLocalization(x => x.ResourcesPath = "Resources");
 builder.Services.AddDbContext<BookstoreDbContext>(options =>
   options.UseNpgsql(builder.Configuration.GetConnectionString("BookstoreDb")));
 
-
-
-// Inject an implementation of ISwaggerProvider with defaulted settings applied
 builder.Services.AddSwaggerGen(x =>
 {
     x.AddSecurityDefinition(

@@ -20,3 +20,5 @@ public class BookstoreDbContext : DbContext
     modelBuilder.Entity<BookGenre>().HasKey(bg => new { bg.BookId, bg.GenreId });
   }
 }
+
+

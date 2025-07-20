@@ -7,35 +7,49 @@ namespace BookstoreManagementSystem.WebApp.Features.Authors;
 
 public class Create
 {
-     public class AuthorData
-    {
-    }
+  public class AuthorData
+  {
+    public string? Name { get; init; }
+    public int BirthYear { get; init; }
+  }
 
-    public class ArticleDataValidator : AbstractValidator<AuthorData>
+  public class AuthorDataValidator : AbstractValidator<AuthorData>
+  {
+    public AuthorDataValidator()
     {
-        public ArticleDataValidator()
-        {
-        }
+      RuleFor(x => x.Name).NotNull().NotEmpty();
     }
+  }
 
-    public record Command(AuthorData Article) : IRequest<ArticleEnvelope>;
+  public record Command(AuthorData Author) : IRequest<AuthorEnvelope>;
 
-    public class CommandValidator : AbstractValidator<Command>
+  public class CommandValidator : AbstractValidator<Command>
+  {
+    public CommandValidator()
     {
-        public CommandValidator() =>
-            RuleFor(x => x.Article).NotNull().SetValidator(new ArticleDataValidator());
+      RuleFor(x => x.Author).NotNull().SetValidator(new AuthorDataValidator());
     }
+  }
 
-    public class Handler(BookstoreDbContext context)
-        : IRequestHandler<Command, ArticleEnvelope>
+  public class Handler(BookstoreDbContext context)
+    : IRequestHandler<Command, AuthorEnvelope>
+  {
+    public async Task<AuthorEnvelope> Handle(
+      Command message,
+      CancellationToken cancellationToken
+    )
     {
-        public async Task<ArticleEnvelope> Handle(
-            Command message,
-            CancellationToken cancellationToken
-        )
-        {
-            await context.Authors.AddAsync(new Author());
-            return new ArticleEnvelope();
-        }
+      var author = new Author
+      {
+        Name = message.Author.Name,
+        BirthYear = message.Author.BirthYear,
+        CreatedAt = DateTime.UtcNow,
+        UpdatedAt = DateTime.UtcNow,
+      };
+
+      await context.Authors.AddAsync(author, cancellationToken);
+      await context.SaveChangesAsync(cancellationToken);
+      return new AuthorEnvelope(author);
     }
+  }
 }
