@@ -1,5 +1,6 @@
 using BookstoreManagementSystem.WebApp;
 using BookstoreManagementSystem.WebApp.Infrastructure;
+using BookstoreManagementSystem.WebApp.Infrastructure.Errors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -70,7 +71,9 @@ builder
 
 var app = builder.Build();
 
+app.Services.GetRequiredService<ILoggerFactory>().AddSerilogLogging();
 
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
