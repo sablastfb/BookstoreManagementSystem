@@ -2,9 +2,9 @@
 
 public class Author
 {
-  public Guid Id { get; }  = Guid.NewGuid();
-  public string? FirstName { get; init; }
-  public string? LastName { get; init;}
+  public Guid Id { get; init; }
+  public string Name { get; init; } = string.Empty; 
+  public int BirthYear { get; init; } 
   public DateTime CreatedAt { get; init; }
   public DateTime UpdatedAt { get; set; }
 }

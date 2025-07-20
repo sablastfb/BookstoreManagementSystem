@@ -1,0 +1,15 @@
+﻿version: '3.8'
+services:
+  bookstore-db:
+    image: postgres:15
+    container_name: bookstore-db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - bookstore-data:/var/lib/postgresql/data
+volumes:
+  bookstore-data:
