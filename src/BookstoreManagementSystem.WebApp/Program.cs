@@ -1,3 +1,4 @@
+using BookstoreManagementSystem.WebApp;
 using BookstoreManagementSystem.WebApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -8,6 +9,8 @@ builder.Services.AddLocalization(x => x.ResourcesPath = "Resources");
 
 builder.Services.AddDbContext<BookstoreDbContext>(options =>
   options.UseNpgsql(builder.Configuration.GetConnectionString("BookstoreDb")));
+
+
 
 // Inject an implementation of ISwaggerProvider with defaulted settings applied
 builder.Services.AddSwaggerGen(x =>
@@ -49,6 +52,9 @@ builder.Services.AddSwaggerGen(x =>
 });
 
 builder.Services.AddCors();
+
+builder.Services.AddBookstoreManagementSystem();
+
 builder
     .Services.AddMvc(opt =>
     {
