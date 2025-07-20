@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "lYeFxJHW7T0=",
+  "success": false,
+  "projectFilePath": "D:\\development\\tmp\\digacon-test\\BookstoreManagementSystem\\test\\IntegrationTests\\IntegrationTests.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1008",
+      "level": "Error",
+      "message": "Projects that use central package version management should not define the version on the PackageReference items but on the PackageVersion items: coverlet.collector;Microsoft.NET.Test.Sdk;xunit;xunit.runner.visualstudio."
+    }
+  ]
+}
