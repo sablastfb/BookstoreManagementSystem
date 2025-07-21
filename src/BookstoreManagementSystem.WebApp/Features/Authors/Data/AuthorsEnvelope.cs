@@ -1,6 +1,6 @@
 ﻿using BookstoreManagementSystem.WebApp.Domain;
 
-namespace BookstoreManagementSystem.WebApp.Features.Authors;
+namespace BookstoreManagementSystem.WebApp.Features.Authors.Data;
 
 public record AuthorsEnvelope(List<Author> Authors)
 {

@@ -1,9 +1,10 @@
 ﻿using BookstoreManagementSystem.WebApp.Domain;
+using BookstoreManagementSystem.WebApp.Features.Authors.Data;
 using BookstoreManagementSystem.WebApp.Infrastructure;
 using FluentValidation;
 using MediatR;
 
-namespace BookstoreManagementSystem.WebApp.Features.Authors;
+namespace BookstoreManagementSystem.WebApp.Features.Authors.Commands;
 
 public class Create
 {

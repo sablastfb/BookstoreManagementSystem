@@ -1,10 +1,11 @@
 ﻿using System.Net;
+using BookstoreManagementSystem.WebApp.Features.Authors.Data;
 using BookstoreManagementSystem.WebApp.Infrastructure;
 using BookstoreManagementSystem.WebApp.Infrastructure.Errors;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookstoreManagementSystem.WebApp.Features.Authors;
+namespace BookstoreManagementSystem.WebApp.Features.Authors.Queries;
 
 public class Get
 {
@@ -19,7 +20,7 @@ public class Get
         .FirstOrDefaultAsync(a => a.Id == request.Id, cancellationToken);
 
       if (author == null) {
-        throw new RestException( HttpStatusCode.NotFound, new { Article = Constants.NOT_FOUND });
+        throw new RestException( HttpStatusCode.NotFound, new { Authors = Constants.NOT_FOUND });
       }      
       
       return new AuthorEnvelope(author);

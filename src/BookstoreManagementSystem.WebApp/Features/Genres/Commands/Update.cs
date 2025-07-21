@@ -5,7 +5,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookstoreManagementSystem.WebApp.Features.Genres;
+namespace BookstoreManagementSystem.WebApp.Features.Genres.Commands;
 
 public class Update
 {
@@ -48,7 +48,7 @@ public class Update
         .FirstOrDefaultAsync(a => a.Id == command.Id, cancellationToken);
       
       if (genre == null) {
-        throw new RestException( HttpStatusCode.NotFound, new { Article = Constants.NOT_FOUND });
+        throw new RestException( HttpStatusCode.NotFound, new { Genres = Constants.NOT_FOUND });
       }
       
       if (command.Parameter.Name != null)

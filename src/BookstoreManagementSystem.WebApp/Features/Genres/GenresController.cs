@@ -1,4 +1,6 @@
 ﻿using Asp.Versioning;
+using BookstoreManagementSystem.WebApp.Features.Genres.Commands;
+using BookstoreManagementSystem.WebApp.Features.Genres.Queries;
 using BookstoreManagementSystem.WebApp.Infrastructure.Secutiry;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

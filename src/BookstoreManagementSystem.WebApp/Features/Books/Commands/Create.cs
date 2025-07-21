@@ -5,7 +5,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookstoreManagementSystem.WebApp.Features.Books;
+namespace BookstoreManagementSystem.WebApp.Features.Books.Commands;
 
 public class Create
 {

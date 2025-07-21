@@ -1,11 +1,12 @@
 ﻿using System.Net;
+using BookstoreManagementSystem.WebApp.Features.Authors.Data;
 using BookstoreManagementSystem.WebApp.Infrastructure;
 using BookstoreManagementSystem.WebApp.Infrastructure.Errors;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookstoreManagementSystem.WebApp.Features.Authors;
+namespace BookstoreManagementSystem.WebApp.Features.Authors.Commands;
 
 public class Update
 {
@@ -54,7 +55,7 @@ public class Update
         .FirstOrDefaultAsync(a => a.Id == message.Id, cancellationToken);
       
       if (author == null) {
-        throw new RestException( HttpStatusCode.NotFound, new { Article = Constants.NOT_FOUND });
+        throw new RestException( HttpStatusCode.NotFound, new { Author = Constants.NOT_FOUND });
       }
       
       if (message.Parameter.Name != null)

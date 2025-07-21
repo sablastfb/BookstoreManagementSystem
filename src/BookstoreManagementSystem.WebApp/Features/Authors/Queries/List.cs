@@ -1,8 +1,9 @@
-﻿using BookstoreManagementSystem.WebApp.Infrastructure;
+﻿using BookstoreManagementSystem.WebApp.Features.Authors.Data;
+using BookstoreManagementSystem.WebApp.Infrastructure;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookstoreManagementSystem.WebApp.Features.Authors;
+namespace BookstoreManagementSystem.WebApp.Features.Authors.Queries;
 
 public class List
 {

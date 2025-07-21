@@ -1,12 +1,10 @@
 ﻿using System.Net;
-using BookstoreManagementSystem.WebApp.Domain;
 using BookstoreManagementSystem.WebApp.Infrastructure;
 using BookstoreManagementSystem.WebApp.Infrastructure.Errors;
-using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookstoreManagementSystem.WebApp.Features.Authors
+namespace BookstoreManagementSystem.WebApp.Features.Authors.Commands
 {
   public class Delete
   {
@@ -20,14 +18,14 @@ namespace BookstoreManagementSystem.WebApp.Features.Authors
           .FirstOrDefaultAsync(a => a.Id == request.Id, cancellationToken);
 
         if (author == null) {
-          throw new RestException( HttpStatusCode.NotFound, new { Article = Constants.NOT_FOUND });
+          throw new RestException( HttpStatusCode.NotFound, new { Authors = Constants.NOT_FOUND });
         }      
 
         var hasBooks = await context.Books
           .AnyAsync(b => b.BookAuthors.Any(a => a.AuthorId == request.Id), cancellationToken);
 
         if (hasBooks){
-          throw new RestException( HttpStatusCode.BadRequest, new { Article = Constants.IN_USE });
+          throw new RestException( HttpStatusCode.BadRequest, new { Book = Constants.IN_USE });
         }
 
         context.Authors.Remove(author);

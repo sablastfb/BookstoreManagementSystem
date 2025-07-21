@@ -4,7 +4,7 @@ using BookstoreManagementSystem.WebApp.Infrastructure.Errors;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookstoreManagementSystem.WebApp.Features.Genres;
+namespace BookstoreManagementSystem.WebApp.Features.Genres.Queries;
 
 public class Get
 {
@@ -19,7 +19,7 @@ public class Get
         .FirstOrDefaultAsync(a => a.Id == request.Id, cancellationToken);
 
       if (genre == null) {
-        throw new RestException( HttpStatusCode.NotFound, new { Article = Constants.NOT_FOUND });
+        throw new RestException( HttpStatusCode.NotFound, new { Genres = Constants.NOT_FOUND });
       }      
       
       return new GenreEnvelope(genre);

@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Asp.Versioning;
 using BookstoreManagementSystem.WebApp.Features.Authors;
+using BookstoreManagementSystem.WebApp.Features.Authors.Commands;
 using BookstoreManagementSystem.WebApp.Infrastructure;
 using BookstoreManagementSystem.WebApp.Infrastructure.Secutiry;
 using FluentValidation;

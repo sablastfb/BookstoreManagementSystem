@@ -4,7 +4,7 @@ using BookstoreManagementSystem.WebApp.Infrastructure.Errors;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookstoreManagementSystem.WebApp.Features.Reviews;
+namespace BookstoreManagementSystem.WebApp.Features.Reviews.Commands;
 
 public class Delete
 {

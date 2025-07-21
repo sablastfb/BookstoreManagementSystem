@@ -1,12 +1,13 @@
 ﻿using System.Net;
 using BookstoreManagementSystem.WebApp.Domain;
+using BookstoreManagementSystem.WebApp.Features.Reviews.Data;
 using BookstoreManagementSystem.WebApp.Infrastructure;
 using BookstoreManagementSystem.WebApp.Infrastructure.Errors;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookstoreManagementSystem.WebApp.Features.Reviews;
+namespace BookstoreManagementSystem.WebApp.Features.Reviews.Commands;
 
 public class Create
 {
@@ -53,7 +54,7 @@ public class Create
         .FirstOrDefaultAsync(b => b.Id == message.Review.BookId, cancellationToken);
       
       if (book == null) {
-        throw new RestException( HttpStatusCode.NotFound, new { Article = Constants.NOT_FOUND });
+        throw new RestException( HttpStatusCode.NotFound, new { Reviews = Constants.NOT_FOUND });
       }
       
       var review = new Review

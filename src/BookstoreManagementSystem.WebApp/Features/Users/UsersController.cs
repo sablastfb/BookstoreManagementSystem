@@ -12,6 +12,4 @@ public class UsersController(IMediator mediator): Controller
   [HttpPost("login")]
   public Task<Login.UserEnvelope> Login([FromBody] Login.Command command,  CancellationToken cancellationToken)
     => mediator.Send(command, cancellationToken);
-  
-  
 }

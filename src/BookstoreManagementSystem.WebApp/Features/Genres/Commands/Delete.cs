@@ -4,7 +4,7 @@ using BookstoreManagementSystem.WebApp.Infrastructure.Errors;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookstoreManagementSystem.WebApp.Features.Genres;
+namespace BookstoreManagementSystem.WebApp.Features.Genres.Commands;
 
 public class Delete
 {
@@ -15,17 +15,17 @@ public class Delete
     public async Task Handle(Command request, CancellationToken cancellationToken)
     {
       var genre = await context.Genres
-        .FindAsync(new object[] { request.Id }, cancellationToken);
+        .FirstOrDefaultAsync(g => g.Id == request.Id, cancellationToken);
 
       if (genre == null) {
-        throw new RestException( HttpStatusCode.NotFound, new { Article = Constants.NOT_FOUND });
+        throw new RestException( HttpStatusCode.NotFound, new { Genres = Constants.NOT_FOUND });
       }      
 
       var hasBooks = await context.Books
-        .AnyAsync(b => b.BookGenres.Any(b => b.GenreId == request.Id), cancellationToken);
+        .AnyAsync(b => b.BookGenres.Any(bg => bg.GenreId == request.Id), cancellationToken);
 
       if (hasBooks){
-        throw new RestException( HttpStatusCode.BadRequest, new { Article = Constants.IN_USE });
+        throw new RestException( HttpStatusCode.BadRequest, new { Book = Constants.IN_USE });
       }
 
       context.Genres.Remove(genre);

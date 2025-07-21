@@ -7,8 +7,11 @@ using BookstoreManagementSystem.WebApp.Infrastructure.Secutiry;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Create = BookstoreManagementSystem.WebApp.Features.Books.Commands.Create;
+using Delete = BookstoreManagementSystem.WebApp.Features.Books.Commands.Delete;
 using Get = BookstoreManagementSystem.WebApp.Features.Books.Queries.Get;
 using List = BookstoreManagementSystem.WebApp.Features.Books.Queries.List;
+using Update = BookstoreManagementSystem.WebApp.Features.Books.Commands.Update;
 
 namespace BookstoreManagementSystem.WebApp.Features.Books;
 

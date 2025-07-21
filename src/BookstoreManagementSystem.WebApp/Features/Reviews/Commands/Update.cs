@@ -1,10 +1,11 @@
 ﻿using System.Net;
+using BookstoreManagementSystem.WebApp.Features.Reviews.Data;
 using BookstoreManagementSystem.WebApp.Infrastructure;
 using BookstoreManagementSystem.WebApp.Infrastructure.Errors;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookstoreManagementSystem.WebApp.Features.Reviews;
+namespace BookstoreManagementSystem.WebApp.Features.Reviews.Commands;
 
 public class Update
 {
