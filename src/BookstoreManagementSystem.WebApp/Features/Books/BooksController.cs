@@ -1,4 +1,6 @@
 ﻿using Asp.Versioning;
+using BookstoreManagementSystem.WebApp.Features.Authors;
+using BookstoreManagementSystem.WebApp.Features.Reviews;
 using BookstoreManagementSystem.WebApp.Infrastructure.Secutiry;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -41,7 +43,7 @@ public class BooksController(IMediator mediator) : Controller
   
   [HttpGet("details/{id}")]
   [Authorize(Roles = $"{JwtIssuerOptions.Admin},{JwtIssuerOptions.Reader}")]
-  public Task<BooksEnvelope> Details(Guid id, CancellationToken cancellationToken) => mediator.Send(new Deatails.Query(id), cancellationToken);
+  public Task<Deatails.BookDetailEnvelope> Details(Guid id, CancellationToken cancellationToken) => mediator.Send(new Deatails.Query(id), cancellationToken);
   
   [HttpGet("detailList")]
   [Authorize(Roles = $"{JwtIssuerOptions.Admin},{JwtIssuerOptions.Reader}")]

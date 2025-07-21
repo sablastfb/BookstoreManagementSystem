@@ -20,7 +20,7 @@ public class List
         .Take(request.Limit ?? 20)
         .AsNoTracking()
         .ToListAsync(cancellationToken);
-      ;
+      
       var booksEnvelope = new BooksEnvelope(books);
       booksEnvelope.Count = await context.Books
         .AsNoTracking()
