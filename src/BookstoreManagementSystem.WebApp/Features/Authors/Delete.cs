@@ -27,7 +27,7 @@ namespace BookstoreManagementSystem.WebApp.Features.Authors
           .AnyAsync(b => b.BookAuthors.Any(a => a.AuthorId == request.Id), cancellationToken);
 
         if (hasBooks){
-          throw new InvalidOperationException("Cannot delete author with associated books");
+          throw new RestException( HttpStatusCode.BadRequest, new { Article = Constants.IN_USE });
         }
 
         context.Authors.Remove(author);

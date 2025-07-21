@@ -30,7 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Genres\" />
     <Folder Include="Features\Reviews\" />
   </ItemGroup>
 

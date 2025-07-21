@@ -6,8 +6,7 @@ public class Author
 {
   public Guid Id { get; init; }
   
-  [MinLength(1)]
-  [MaxLength(200)]
+  [MinLength(1), MaxLength(200)]
   public required string Name { get; set; } 
   public int BirthYear { get; set; } 
   public DateTime CreatedAt { get; init; }

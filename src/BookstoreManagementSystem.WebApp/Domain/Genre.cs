@@ -1,9 +1,13 @@
-﻿namespace BookstoreManagementSystem.WebApp.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BookstoreManagementSystem.WebApp.Domain;
 
 public class Genre
 {
   public short Id { get; init; } 
-  public string Name { get; init; } = string.Empty; 
+  
+  [MinLength(1), MaxLength(50)]
+  public required string Name { get; set; } 
   public DateTime CreatedAt { get; init; }
   public DateTime UpdatedAt { get; set; }
 }

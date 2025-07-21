@@ -7,7 +7,8 @@ public class Book
   public Guid Id { get; set; } 
   public decimal Price { get; set; }
   
-  public string Title { get; init; } = string.Empty;
+  [MinLength(1), MaxLength(200)]
+  public required string Title { get; init; }
   public DateTime CreatedAt { get; init; }
   public DateTime UpdatedAt { get; set; }
   
