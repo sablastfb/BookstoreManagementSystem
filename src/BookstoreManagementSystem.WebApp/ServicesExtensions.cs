@@ -25,6 +25,11 @@ public static class ServicesExtensions
     );
     services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
     services.AddValidatorsFromAssemblyContaining<Create.CommandValidator>();
+    services.AddScoped(
+      typeof(IPipelineBehavior<,>),
+      typeof(DBContextTransactionPipelineBehavior<,>)
+    );
+    
     services.AddApiVersioning(options =>
       {
         options.DefaultApiVersion = new ApiVersion(1);
