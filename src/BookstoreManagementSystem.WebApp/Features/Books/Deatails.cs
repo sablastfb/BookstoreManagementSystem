@@ -36,7 +36,9 @@ public class Deatails
           b.Reviews.Any() ? b.Reviews.Average(r => (double)r.Rating) : 0,
           b.BookAuthors.Select(ba => ba.Author!.Name).ToList(),
           b.BookGenres.Select(bg => bg.Genre!.Name).ToList()
-        )).FirstOrDefaultAsync(cancellationToken);
+        ))
+        .AsNoTracking()
+        .FirstOrDefaultAsync(cancellationToken);
 
       if (book == null)
       {

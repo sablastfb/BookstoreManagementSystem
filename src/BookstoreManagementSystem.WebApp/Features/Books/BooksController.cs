@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using BookstoreManagementSystem.WebApp.Features.Authors;
+using BookstoreManagementSystem.WebApp.Features.Books.Data;
 using BookstoreManagementSystem.WebApp.Features.Reviews;
 using BookstoreManagementSystem.WebApp.Infrastructure.Secutiry;
 using MediatR;
@@ -47,5 +48,8 @@ public class BooksController(IMediator mediator) : Controller
   
   [HttpGet("detailList")]
   [Authorize(Roles = $"{JwtIssuerOptions.Admin},{JwtIssuerOptions.Reader}")]
-  public Task<BooksEnvelope> DetailsList(CancellationToken cancellationToken) => mediator.Send(new DetailsList.Query(), cancellationToken);
+  public Task<BooksDetailsEnvelope> DetailsList(
+    [FromQuery] int? limit,
+    [FromQuery] int? offset,
+    CancellationToken cancellationToken) => mediator.Send(new DetailsList.Query(limit, offset), cancellationToken);
 }

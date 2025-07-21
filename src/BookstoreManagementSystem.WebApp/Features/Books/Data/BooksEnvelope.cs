@@ -1,6 +1,6 @@
 ﻿using BookstoreManagementSystem.WebApp.Domain;
 
-namespace BookstoreManagementSystem.WebApp.Features.Books;
+namespace BookstoreManagementSystem.WebApp.Features.Books.Data;
 
 public record BooksEnvelope(List<Book> Books)
 {

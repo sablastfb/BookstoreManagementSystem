@@ -1,4 +1,5 @@
 ﻿using BookstoreManagementSystem.WebApp.Domain;
+using BookstoreManagementSystem.WebApp.Features.Books.Data;
 using BookstoreManagementSystem.WebApp.Infrastructure;
 using FluentValidation;
 using MediatR;
