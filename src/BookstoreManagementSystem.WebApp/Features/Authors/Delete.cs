@@ -17,7 +17,7 @@ namespace BookstoreManagementSystem.WebApp.Features.Authors
       public async Task Handle(Command request, CancellationToken cancellationToken)
       {
         var author = await context.Authors
-          .FindAsync(new object[] { request.Id }, cancellationToken);
+          .FirstOrDefaultAsync(a => a.Id == request.Id, cancellationToken);
 
         if (author == null) {
           throw new RestException( HttpStatusCode.NotFound, new { Article = Constants.NOT_FOUND });

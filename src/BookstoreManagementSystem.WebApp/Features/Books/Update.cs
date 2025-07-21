@@ -55,8 +55,9 @@ public class Update
       {
         book.Price = message.Parameter.Price.Value;
       }
+      book.UpdatedAt = DateTime.UtcNow;
       context.Update(book);
-      context.SaveChanges();
+      await context.SaveChangesAsync(cancellationToken);
       return  new BookEnvelope(book);
     }
   }

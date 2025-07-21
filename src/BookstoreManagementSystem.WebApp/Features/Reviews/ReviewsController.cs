@@ -18,16 +18,6 @@ public class ReviewsController(IMediator mediator) : Controller
     CancellationToken cancellationToken
   ) => mediator.Send(command, cancellationToken);
   
-  
-  [HttpGet("{id}")]
-  [Authorize(Roles = $"{JwtIssuerOptions.Admin},{JwtIssuerOptions.Reader}")]
-  public Task<ReviewEnvelope> Get(Guid id, CancellationToken cancellationToken) => mediator.Send(new Get.Query(id), cancellationToken);
-  
-  [HttpGet]
-  [Authorize(Roles = $"{JwtIssuerOptions.Admin},{JwtIssuerOptions.Reader}")]
-  public Task<ReviewsEnvelope> List(CancellationToken cancellationToken) => mediator.Send(new List.Query(), cancellationToken);
-  
-  
   [HttpPut]
   [Authorize(Roles = JwtIssuerOptions.Admin)]
   public Task<ReviewEnvelope> Update(  
@@ -35,5 +25,5 @@ public class ReviewsController(IMediator mediator) : Controller
   
   [HttpDelete]
   [Authorize(Roles = JwtIssuerOptions.Admin)]
-  public Task Delete(Guid id,CancellationToken cancellationToken) => mediator.Send(new Delete.Command(id), cancellationToken);
+  public Task Delete(long id,CancellationToken cancellationToken) => mediator.Send(new Delete.Command(id), cancellationToken);
 }

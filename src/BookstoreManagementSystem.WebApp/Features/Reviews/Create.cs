@@ -58,6 +58,7 @@ public class Create
       
       var review = new Review
       {
+        BookId = book.Id,
         Rating = message.Review.Rating,
         CreatedAt = DateTime.UtcNow,
         UpdatedAt = DateTime.UtcNow,
