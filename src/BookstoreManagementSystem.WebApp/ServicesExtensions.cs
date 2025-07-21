@@ -1,8 +1,13 @@
 ﻿using System.Reflection;
+using System.Security.Claims;
+using System.Text;
 using BookstoreManagementSystem.WebApp.Features.Authors;
 using BookstoreManagementSystem.WebApp.Infrastructure;
+using BookstoreManagementSystem.WebApp.Infrastructure.Secutiry;
 using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
 
@@ -18,6 +23,46 @@ public static class ServicesExtensions
     services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
     services.AddValidatorsFromAssemblyContaining<Create.CommandValidator>();
   }
+
+public static void AddJWT(this IServiceCollection services, IConfiguration configuration)
+{
+    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+              ValidateIssuer = true,
+              ValidateAudience = true,
+              ValidateLifetime = true,
+              ValidateIssuerSigningKey = true,
+              ValidIssuer = configuration["Jwt:Issuer"],
+              ValidAudience = configuration["Jwt:Audience"],
+              IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(configuration["Jwt:Key"] ?? string.Empty)),
+                
+              NameClaimType = ClaimTypes.Name,
+              RoleClaimType = ClaimTypes.Role,
+              ClockSkew = TimeSpan.Zero
+            };
+            
+            options.Events = new JwtBearerEvents
+            {
+              OnAuthenticationFailed = context =>
+              {
+                Console.WriteLine($"Authentication failed: {context.Exception}");
+                return Task.CompletedTask;
+              }
+            };
+        });
+
+    services.AddAuthorization(options =>
+    {
+        options.AddPolicy(JwtIssuerOptions.Reader, policy => 
+            policy.RequireRole(JwtIssuerOptions.Reader));
+        options.AddPolicy(JwtIssuerOptions.Admin, policy => 
+            policy.RequireRole(JwtIssuerOptions.Admin));
+    });
+}
   public static void AddSerilogLogging(this ILoggerFactory loggerFactory)
   {
     var log = new LoggerConfiguration()
