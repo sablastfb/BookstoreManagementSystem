@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookstoreManagementSystem.WebApp.Features.Genres;
+namespace BookstoreManagementSystem.WebApp.Features.Genres.Queries;
 
 public class List
 {
@@ -16,7 +16,6 @@ public class List
         .AsNoTracking()
         .OrderBy(a => a.Name)
         .ToListAsync(cancellationToken);
-      ;
 
       var genresEnvelope = new GenresEnvelope(genres);
       genresEnvelope.Count = await context.Genres

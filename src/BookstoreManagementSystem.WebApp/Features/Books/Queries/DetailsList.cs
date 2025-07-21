@@ -2,11 +2,19 @@
 using BookstoreManagementSystem.WebApp.Infrastructure;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace BookstoreManagementSystem.WebApp.Features.Books.Queries;
 
 public class DetailsList
 {
+  public record BookDetailDto(
+    string Title,
+    decimal Price,
+    double AverageRating,
+    string AuthorNames,
+    string GenreNames);
+  
   public record Query(
     int? Limit,
     int? Offset) : IRequest<BooksDetailsEnvelope>;
@@ -15,29 +23,19 @@ public class DetailsList
   {
     public async Task<BooksDetailsEnvelope> Handle(Query request, CancellationToken cancellationToken)
     {
-      var booksDetails = await context.Books
-        .Include(b => b.BookAuthors)
-        .ThenInclude(ba => ba.Author)
-        .Include(b => b.BookGenres)
-        .ThenInclude(bg => bg.Genre)
-        .Include(b => b.Reviews)
-        .AsNoTracking()
-        // Order by average rating first (this can be translated to SQL)
-        .OrderByDescending(b => b.Reviews.Any() ? b.Reviews.Average(r => (double)r.Rating) : 0)
-        .Skip(request.Offset ?? 0)
-        .Take(request.Limit ?? 10)
+      var sql = ResourceLoader.GetSqlQuery("Books", "DetailsList");
+
+      var booksDetailsDto = await context.Database
+        .SqlQueryRaw<BookDetailDto>(sql
+          ,
+          new NpgsqlParameter("Limit", request.Limit ?? 10),
+          new NpgsqlParameter("Offset", request.Offset ?? 0)
+        )
         .ToListAsync(cancellationToken);
-
-      // Then project to your envelope (in memory)
-      var result = booksDetails.Select(b => new BookDetailEnvelope(
-        b.Title,
-        b.Price,
-        b.Reviews.Any() ? b.Reviews.Average(r => (double)r.Rating) : 0,
-        b.BookAuthors.Select(ba => ba.Author!.Name).ToList(),
-        b.BookGenres.Select(bg => bg.Genre!.Name).ToList()
-      )).ToList();
-
-      return new BooksDetailsEnvelope( result );
+      var booksDetails = BookDetailMapper.MapToEnvelope(booksDetailsDto);
+      booksDetails.Count = context.Books.Count();
+      
+      return booksDetails;
     }
   }
 }

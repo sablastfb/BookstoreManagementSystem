@@ -23,12 +23,6 @@ public class Deatails
     {
       var book = await context.Books
         .Where(b => b.Id == request.Id)
-        .Include(b => b.BookAuthors)
-        .ThenInclude(ba => ba.Author)
-        .Include(b => b.BookGenres)
-        .ThenInclude(bg => bg.Genre)
-        .Include(b => b.Reviews)
-        .Include(b => b.Reviews)
         .Select(b => new BookDetailEnvelope
         (
           b.Title,
