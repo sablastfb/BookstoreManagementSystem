@@ -1,5 +1,7 @@
-﻿using BookstoreManagementSystem.WebApp.Domain;
+﻿using System.Net;
+using BookstoreManagementSystem.WebApp.Domain;
 using BookstoreManagementSystem.WebApp.Infrastructure;
+using BookstoreManagementSystem.WebApp.Infrastructure.Errors;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -17,9 +19,9 @@ namespace BookstoreManagementSystem.WebApp.Features.Authors
         var author = await context.Authors
           .FindAsync(new object[] { request.Id }, cancellationToken);
 
-        if (author == null){
-          throw new ValidationException("Invalid author ID");
-        }
+        if (author == null) {
+          throw new RestException( HttpStatusCode.NotFound, new { Article = Constants.NOT_FOUND });
+        }      
 
         var hasBooks = await context.Books
           .AnyAsync(b => b.BookAuthors.Any(a => a.AuthorId == request.Id), cancellationToken);

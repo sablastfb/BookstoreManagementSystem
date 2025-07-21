@@ -8,8 +8,8 @@ public class Author
   
   [MinLength(1)]
   [MaxLength(200)]
-  public required string Name { get; init; } 
-  public int BirthYear { get; init; } 
+  public required string Name { get; set; } 
+  public int BirthYear { get; set; } 
   public DateTime CreatedAt { get; init; }
   public DateTime UpdatedAt { get; set; }
 }
