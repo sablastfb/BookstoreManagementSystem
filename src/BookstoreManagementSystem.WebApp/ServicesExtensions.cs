@@ -1,12 +1,14 @@
 ﻿using System.Reflection;
 using System.Security.Claims;
 using System.Text;
+using Asp.Versioning;
 using BookstoreManagementSystem.WebApp.Features.Authors;
 using BookstoreManagementSystem.WebApp.Infrastructure;
 using BookstoreManagementSystem.WebApp.Infrastructure.Secutiry;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
@@ -22,6 +24,21 @@ public static class ServicesExtensions
     );
     services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
     services.AddValidatorsFromAssemblyContaining<Create.CommandValidator>();
+    services.AddApiVersioning(options =>
+      {
+        options.DefaultApiVersion = new ApiVersion(1);
+        options.ReportApiVersions = true;
+        options.AssumeDefaultVersionWhenUnspecified = true;
+        options.ApiVersionReader = ApiVersionReader.Combine(
+          new UrlSegmentApiVersionReader(),
+          new HeaderApiVersionReader("X-Api-Version"));
+      })
+      .AddMvc()
+      .AddApiExplorer(options =>
+      {
+        options.GroupNameFormat = "'v'V";
+        options.SubstituteApiVersionInUrl = true;
+      });
   }
 
 public static void AddJWT(this IServiceCollection services, IConfiguration configuration)

@@ -1,6 +1,39 @@
-﻿namespace BookstoreManagementSystem.WebApp.Features.Reviews;
+﻿using Asp.Versioning;
+using BookstoreManagementSystem.WebApp.Infrastructure.Secutiry;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-public class ReviewsController
+namespace BookstoreManagementSystem.WebApp.Features.Reviews;
+
+[ApiController]
+[Route("api/v{version:apiVersion}/[controller]")]
+[ApiVersion("1.0")]
+public class ReviewsController(IMediator mediator) : Controller
 {
+  [HttpPost]
+  [Authorize(Roles = JwtIssuerOptions.Admin)]
+  public Task<ReviewEnvelope> Create(
+    [FromBody] Create.Command command,
+    CancellationToken cancellationToken
+  ) => mediator.Send(command, cancellationToken);
   
+  
+  [HttpGet("{id}")]
+  [Authorize(Roles = $"{JwtIssuerOptions.Admin},{JwtIssuerOptions.Reader}")]
+  public Task<ReviewEnvelope> Get(Guid id, CancellationToken cancellationToken) => mediator.Send(new Get.Query(id), cancellationToken);
+  
+  [HttpGet]
+  [Authorize(Roles = $"{JwtIssuerOptions.Admin},{JwtIssuerOptions.Reader}")]
+  public Task<ReviewsEnvelope> List(CancellationToken cancellationToken) => mediator.Send(new List.Query(), cancellationToken);
+  
+  
+  [HttpPut]
+  [Authorize(Roles = JwtIssuerOptions.Admin)]
+  public Task<ReviewEnvelope> Update(  
+    [FromBody] Update.Command command, CancellationToken cancellationToken) => mediator.Send(command, cancellationToken);
+  
+  [HttpDelete]
+  [Authorize(Roles = JwtIssuerOptions.Admin)]
+  public Task Delete(Guid id,CancellationToken cancellationToken) => mediator.Send(new Delete.Command(id), cancellationToken);
 }

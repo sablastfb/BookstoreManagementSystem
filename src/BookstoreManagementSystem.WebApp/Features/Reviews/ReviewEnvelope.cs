@@ -1,6 +1,5 @@
-﻿namespace BookstoreManagementSystem.WebApp.Features.Reviews;
+﻿using BookstoreManagementSystem.WebApp.Domain;
 
-public class ReviewEnvelope
-{
-  
-}
+namespace BookstoreManagementSystem.WebApp.Features.Reviews;
+
+public record ReviewEnvelope(Review Review);

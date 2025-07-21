@@ -1,10 +1,7 @@
-using System.Text;
 using BookstoreManagementSystem.WebApp;
 using BookstoreManagementSystem.WebApp.Infrastructure;
 using BookstoreManagementSystem.WebApp.Infrastructure.Errors;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -48,6 +45,7 @@ builder.Services.AddSwaggerGen(x =>
   x.CustomSchemaIds(s => s.FullName?.Replace("+", "."));
 });
 
+
 builder.Services.AddCors();
 builder.Services.AddBookstoreManagementSystem();
 builder.Services.AddJWT(builder.Configuration);
@@ -66,7 +64,6 @@ builder
     );
 
 
-
 var app = builder.Build();
 
 app.Services.GetRequiredService<ILoggerFactory>().AddSerilogLogging();
@@ -79,7 +76,4 @@ app.UseSwaggerUI(x => x.SwaggerEndpoint("/swagger/v1/swagger.json", "RealWorld A
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMvc();
-
-// Enable middleware to serve generated Swagger as a JSON endpoint
-
 app.Run();

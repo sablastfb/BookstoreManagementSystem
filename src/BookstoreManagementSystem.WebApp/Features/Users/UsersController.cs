@@ -1,9 +1,12 @@
-﻿using MediatR;
+﻿using Asp.Versioning;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookstoreManagementSystem.WebApp.Features.Users;
 
-[Route("users")]
+[ApiController]
+[Route("api/v{version:apiVersion}/[controller]")]
+[ApiVersion("1.0")]
 public class UsersController(IMediator mediator): Controller
 {
   [HttpPost("login")]

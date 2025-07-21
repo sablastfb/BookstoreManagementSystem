@@ -12,6 +12,7 @@ public class Create
     public required string Name { get; init; }
     public required int BirthYear { get; init; }
   }
+  public record Command(AuthorData Author) : IRequest<AuthorEnvelope>;
 
   public class AuthorDataValidator : AbstractValidator<AuthorData>
   {
@@ -35,7 +36,6 @@ public class Create
     }
   }
 
-  public record Command(AuthorData Author) : IRequest<AuthorEnvelope>;
 
   public class CommandValidator : AbstractValidator<Command>
   {
