@@ -3,7 +3,7 @@ using BookstoreManagementSystem.WebApp.Infrastructure;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookstoreManagementSystem.WebApp.Features.Books;
+namespace BookstoreManagementSystem.WebApp.Features.Books.Queries;
 
 public class List
 {

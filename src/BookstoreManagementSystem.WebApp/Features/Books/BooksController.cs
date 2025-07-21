@@ -1,11 +1,14 @@
 ﻿using Asp.Versioning;
 using BookstoreManagementSystem.WebApp.Features.Authors;
 using BookstoreManagementSystem.WebApp.Features.Books.Data;
+using BookstoreManagementSystem.WebApp.Features.Books.Queries;
 using BookstoreManagementSystem.WebApp.Features.Reviews;
 using BookstoreManagementSystem.WebApp.Infrastructure.Secutiry;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Get = BookstoreManagementSystem.WebApp.Features.Books.Queries.Get;
+using List = BookstoreManagementSystem.WebApp.Features.Books.Queries.List;
 
 namespace BookstoreManagementSystem.WebApp.Features.Books;
 

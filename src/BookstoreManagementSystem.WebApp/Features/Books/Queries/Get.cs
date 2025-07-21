@@ -5,7 +5,7 @@ using BookstoreManagementSystem.WebApp.Infrastructure.Errors;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookstoreManagementSystem.WebApp.Features.Books;
+namespace BookstoreManagementSystem.WebApp.Features.Books.Queries;
 
 public class Get
 {
