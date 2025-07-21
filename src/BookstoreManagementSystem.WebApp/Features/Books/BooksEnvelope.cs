@@ -2,4 +2,7 @@
 
 namespace BookstoreManagementSystem.WebApp.Features.Books;
 
-public record BookEnvelope(Book Book);
+public record BooksEnvelope(List<Book> Books)
+{
+  public int Count {get; set;}
+}

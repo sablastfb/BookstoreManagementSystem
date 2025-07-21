@@ -25,7 +25,7 @@ public class GenresController(IMediator mediator) : Controller
   public Task<GenresEnvelope> List(CancellationToken cancellationToken) => mediator.Send(new List.Query(), cancellationToken);
   
   
-  [HttpPatch]
+  [HttpPut]
   [Authorize(Roles = JwtIssuerOptions.Admin)]
   public Task<GenreEnvelope> Update(  
     [FromBody] Update.Command command, CancellationToken cancellationToken) => mediator.Send(command, cancellationToken);

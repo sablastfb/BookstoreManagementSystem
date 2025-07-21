@@ -24,7 +24,7 @@ public class AuthorsController(IMediator mediator) : Controller
   public Task<AuthorsEnvelope> List(CancellationToken cancellationToken) => mediator.Send(new List.Query(), cancellationToken);
   
   
-  [HttpPatch]
+  [HttpPut]
   [Authorize(Roles = JwtIssuerOptions.Admin)]
   public Task<AuthorEnvelope> Update(  
     [FromBody] Update.Command command, CancellationToken cancellationToken) => mediator.Send(command, cancellationToken);
