@@ -9,8 +9,8 @@ public class Create
 {
   public class AuthorData
   {
-    public string? Name { get; init; }
-    public int BirthYear { get; init; }
+    public required string Name { get; init; }
+    public required int BirthYear { get; init; }
   }
 
   public class AuthorDataValidator : AbstractValidator<AuthorData>
@@ -55,7 +55,7 @@ public class Create
     {
       var author = new Author
       {
-        Name = message.Author.Name,
+        Name = message.Author.Name!,
         BirthYear = message.Author.BirthYear,
         CreatedAt = DateTime.UtcNow,
         UpdatedAt = DateTime.UtcNow,
