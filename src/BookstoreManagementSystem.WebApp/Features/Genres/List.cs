@@ -1,6 +1,4 @@
-﻿using System.Net;
-using BookstoreManagementSystem.WebApp.Infrastructure;
-using BookstoreManagementSystem.WebApp.Infrastructure.Errors;
+﻿using BookstoreManagementSystem.WebApp.Infrastructure;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,12 +15,14 @@ public class List
       var genres = await context.Genres
         .AsNoTracking()
         .OrderBy(a => a.Name)
-        .ToListAsync(cancellationToken);;
+        .ToListAsync(cancellationToken);
+      ;
 
       var genresEnvelope = new GenresEnvelope(genres);
-      genresEnvelope.Count = genresEnvelope.Count;
+      genresEnvelope.Count = await context.Genres
+        .AsNoTracking()
+        .CountAsync(cancellationToken);
       return genresEnvelope;
     }
   }
-  
 }

@@ -48,23 +48,23 @@ public class Update
   
   public class Handler(BookstoreDbContext context): IRequestHandler<Command, AuthorEnvelope>
   {
-    public async Task<AuthorEnvelope> Handle(Command command, CancellationToken cancellationToken)
+    public async Task<AuthorEnvelope> Handle(Command message, CancellationToken cancellationToken)
     {
       var author = await context.Authors
-        .FirstOrDefaultAsync(a => a.Id == command.Id, cancellationToken);
+        .FirstOrDefaultAsync(a => a.Id == message.Id, cancellationToken);
       
       if (author == null) {
         throw new RestException( HttpStatusCode.NotFound, new { Article = Constants.NOT_FOUND });
       }
       
-      if (command.Parameter.Name != null)
+      if (message.Parameter.Name != null)
       {
-        author.Name = command.Parameter.Name;
+        author.Name = message.Parameter.Name;
       }
 
-      if (command.Parameter.BirthYear.HasValue)
+      if (message.Parameter.BirthYear.HasValue)
       {
-        author.BirthYear = command.Parameter.BirthYear.Value;
+        author.BirthYear = message.Parameter.BirthYear.Value;
       }
 
       author.UpdatedAt = DateTime.UtcNow;

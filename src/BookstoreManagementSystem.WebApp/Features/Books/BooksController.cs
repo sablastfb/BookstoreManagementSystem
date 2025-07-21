@@ -25,7 +25,10 @@ public class BooksController(IMediator mediator) : Controller
 
   [HttpGet]
   [Authorize(Roles = $"{JwtIssuerOptions.Admin},{JwtIssuerOptions.Reader}")]
-  public Task<BooksEnvelope> List(CancellationToken cancellationToken) => mediator.Send(new List.Query(), cancellationToken);
+  public Task<BooksEnvelope> List(
+    [FromQuery] int? limit,
+    [FromQuery] int? offset,
+    CancellationToken cancellationToken) => mediator.Send(new List.Query(limit, offset), cancellationToken);
   
   [HttpPut]
   [Authorize(Roles = JwtIssuerOptions.Admin)]

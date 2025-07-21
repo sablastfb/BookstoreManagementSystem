@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace BookstoreManagementSystem.WebApp.Domain;
 
 public class Genre
 {
+  [JsonIgnore]
   public short Id { get; init; } 
   
   [MinLength(1), MaxLength(50)]

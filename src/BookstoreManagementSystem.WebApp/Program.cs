@@ -45,7 +45,6 @@ builder.Services.AddSwaggerGen(x =>
   x.CustomSchemaIds(s => s.FullName?.Replace("+", "."));
 });
 
-
 builder.Services.AddCors();
 builder.Services.AddBookstoreManagementSystem();
 builder.Services.AddJWT(builder.Configuration);

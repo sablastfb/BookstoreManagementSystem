@@ -34,7 +34,9 @@ public class Create
   {
     public CommandValidator()
     {
-      RuleFor(x => x.Review).NotNull().SetValidator(new AuthorDataValidator());
+      RuleFor(x => x.Review)
+        .NotNull()
+        .SetValidator(new AuthorDataValidator());
     }
   }
   
@@ -46,7 +48,9 @@ public class Create
       CancellationToken cancellationToken
     )
     {
-      var book = await context.Books.AsNoTracking().FirstOrDefaultAsync(b => b.Id == message.Review.BookId, cancellationToken);
+      var book = await context
+        .Books.AsNoTracking()
+        .FirstOrDefaultAsync(b => b.Id == message.Review.BookId, cancellationToken);
       
       if (book == null) {
         throw new RestException( HttpStatusCode.NotFound, new { Article = Constants.NOT_FOUND });
