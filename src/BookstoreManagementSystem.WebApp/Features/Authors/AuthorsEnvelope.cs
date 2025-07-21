@@ -2,4 +2,7 @@
 
 namespace BookstoreManagementSystem.WebApp.Features.Authors;
 
-public record AuthorsEnvelope(List<Author> Authors);
+public record AuthorsEnvelope(List<Author> Authors)
+{
+  public int Count { get; set; }
+};
