@@ -5,7 +5,6 @@ namespace BookstoreManagementSystem.WebApp.Domain;
 
 public class Book
 {
-  [JsonIgnore]
   public Guid Id { get; set; } 
   
   [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than 0")]

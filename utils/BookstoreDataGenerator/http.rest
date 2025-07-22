@@ -1,0 +1,37 @@
+@baseUrl = http://localhost:5000/
+
+### Get all users
+GET {{baseUrl}}
+Content-Type: application/json
+
+### Adds authors to db (generates fake data)
+POST {{baseUrl}}/addAuthors
+Content-Type: application/json
+
+{
+  "count": 5  
+}
+
+### Adds genres to db (generates fake data)
+POST {{baseUrl}}/addGenres
+Content-Type: application/json
+
+{
+}
+
+### Adds books to db (generates fake data)
+POST {{baseUrl}}/addBooks
+Content-Type: application/json
+
+{
+  "count": 5
+}
+
+### Adds reviews to db (generates fake data)
+POST {{baseUrl}}/addReviews
+Content-Type: application/json
+
+{
+  "count": 105
+}
+
