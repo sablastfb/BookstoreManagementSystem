@@ -9,7 +9,6 @@ namespace BookstoreManagementSystem.Scheduler.Services;
 
 public class BookImportService(BookstoreDbContext dbContext, IGetFakeDataService getFakeData,  ILogger<BookImportService> logger): IBookImportService
 {
-  private const int BatchSize = 5000;
   private const int SimilarityThreshold = 95; 
   public async Task<int>  ImportBooksAsync()
   {
@@ -52,7 +51,7 @@ public class BookImportService(BookstoreDbContext dbContext, IGetFakeDataService
       UpdatedAt = DateTime.UtcNow,
     }).ToList();
     await dbContext.BulkInsertAsync(books);
-    dbContext.SaveChanges();
+    await dbContext.SaveChangesAsync();
     return newBooks.Count();
   }
 }
