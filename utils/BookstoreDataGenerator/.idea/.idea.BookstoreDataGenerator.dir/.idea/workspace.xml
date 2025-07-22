@@ -8,24 +8,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb222203-b6f8-41e5-8b60-fde3cdb48874" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Models/AddRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/Author.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/AuthorsResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/Book.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/BookRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/BooksResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/GenreResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/Genres.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/Review.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Utils/BookstoreDataFaker.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Utils/DataUtil.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Utils/TestLogIn.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http.rest" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/BookstoreManagementSystem.WebApp/Domain/Book.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/BookstoreManagementSystem.WebApp/Domain/Book.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/BookstoreManagementSystem.WebApp/Domain/Genre.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/BookstoreManagementSystem.WebApp/Domain/Genre.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookstoreDataGenerator.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BookstoreDataGenerator.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../src/BookstoreManagementSystem.Scheduler/Jobs/BookImportJob.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../src/BookstoreManagementSystem.Scheduler/Services/BookImportService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../src/BookstoreManagementSystem.Scheduler/Services/IBookImportService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../src/BookstoreManagementSystem.Scheduler/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/BookstoreManagementSystem.Scheduler/BookstoreManagementSystem.Scheduler.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/BookstoreManagementSystem.Scheduler/BookstoreManagementSystem.Scheduler.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/BookstoreManagementSystem.Scheduler/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/BookstoreManagementSystem.Scheduler/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../test/BookstoreManagementSystem.IntegrationTests/UnitTest1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../test/BookstoreManagementSystem.IntegrationTests/UnitTest1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../test/BookstoreManagementSystem.UnitTests/UnitTest1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../test/BookstoreManagementSystem.UnitTests/UnitTest1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BookstoreDataGenerator.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BookstoreDataGenerator.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils/TestLogIn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/LogInClientUntil.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

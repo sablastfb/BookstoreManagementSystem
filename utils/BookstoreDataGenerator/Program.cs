@@ -10,7 +10,7 @@ app.MapGet("/", () => "Hello World!");
 
 app.MapPost("/addAuthors", async (AddRequest request, IConfiguration configuration) =>
 {
-  var logInClient = await TestLogIn.LogInClient(configuration);
+  var logInClient = await LogInClientUntil.LogInClient(configuration);
   var authors = BookstoreDataFaker.GenerateFakeAuthors(request.Count);
 
   foreach (var author in authors)
@@ -25,7 +25,7 @@ app.MapPost("/addAuthors", async (AddRequest request, IConfiguration configurati
 
 app.MapPost("/addGenres", async (IConfiguration configuration) =>
 {
-  var logInClient = await TestLogIn.LogInClient(configuration);
+  var logInClient = await LogInClientUntil.LogInClient(configuration);
   var genres = BookstoreDataFaker.GenerateFakeGenres();
 
   foreach (var genre in genres)
@@ -40,7 +40,7 @@ app.MapPost("/addGenres", async (IConfiguration configuration) =>
 
 app.MapPost("/addBooks", async (AddRequest request, IConfiguration configuration) =>
 {
-  var logInClient = await TestLogIn.LogInClient(configuration);
+  var logInClient = await LogInClientUntil.LogInClient(configuration);
   
   var authorsResponse = await logInClient.GetAsync("/api/v1/Authors");
   authorsResponse.EnsureSuccessStatusCode();
@@ -69,7 +69,7 @@ app.MapPost("/addBooks", async (AddRequest request, IConfiguration configuration
 
 app.MapPost("/addReviews", async (AddRequest request, IConfiguration configuration) =>
 {
-  var logInClient = await TestLogIn.LogInClient(configuration);
+  var logInClient = await LogInClientUntil.LogInClient(configuration);
 
   var authorsResponse = await logInClient.GetAsync("/api/v1/Books");
   authorsResponse.EnsureSuccessStatusCode();

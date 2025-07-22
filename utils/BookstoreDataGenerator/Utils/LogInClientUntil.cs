@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace BookstoreDataGenerator.Utils;
 
-public static class TestLogIn
+public static class LogInClientUntil
 {
   private static HttpClient? _client;
 
