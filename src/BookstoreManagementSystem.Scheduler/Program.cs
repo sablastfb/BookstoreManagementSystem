@@ -20,7 +20,7 @@ var builder = Host.CreateDefaultBuilder(args)
       q.AddTrigger(opts => opts
         .ForJob(jobKey)
         .WithIdentity("BookImportTrigger")
-        .WithCronSchedule(hostContext.Configuration["Quartz:BookImportSchedule"] ?? "0/30 * * * * ?"));
+        .WithCronSchedule(hostContext.Configuration["Quartz:BookImportSchedule"] ?? "0 * * * * ?"));
     });
 
     services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);

@@ -163,19 +163,30 @@ The book import process implements an efficient algorithm designed to handle lar
 - **Database**: Fresh PostgreSQL instance created for each test suite
 - **Resource Management**: Automatic container lifecycle management with post-test cleanup
 
+---
 
+## API Endpoints
+
+### Authentication & Authorization
+- **Authentication Method**: JWT Bearer tokens
+- **Role-Based Access Control**:
+    - **Read Role**: Access to GET endpoints only
+      - Username: reader
+      - Password: reader 
+    - **ReadWrite Role**: Full CRUD operation access
+      - Username: admin
+      - Password: admin
 ---
 
 ## Future Enhancements
 
 **Potential Improvements:**
-- **Enhanced Logging**: More granular operation tracking and performance metrics
+- **Enhanced Logging**: More granular operation tracking and performance metrics and open telemetry
 - **Advanced Error Handling**: Detailed error categorization and recovery strategies
-- **Fuzzy Matching Implementation**: Levenshtein distance algorithm for typo-tolerant book matching
 - **Caching Strategy**: Redis integration for improved response times
 - **Monitoring Integration**: Application Performance Monitoring (APM) tools
 - **API Rate Limiting**: Protection against excessive request volumes
-
+- **Replace client with context in data generator**: I notice it too late 
 ---
 
 ## Project Reflection

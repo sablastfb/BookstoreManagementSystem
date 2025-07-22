@@ -72,7 +72,7 @@ public class BooksController(IMediator mediator) : Controller
   
   
   /// <summary>
-  /// Return list of  details of and sorts them by average rating, by defaults first 10
+  /// Return list of details and sorts them by average rating, by defaults first 10
   /// </summary>
   [HttpGet("detailList")]
   [Authorize(Roles = $"{JwtIssuerOptions.Admin},{JwtIssuerOptions.Reader}")]
