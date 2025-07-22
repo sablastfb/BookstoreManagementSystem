@@ -52,7 +52,7 @@ public class BookImportService(BookstoreDbContext dbContext, IGetFakeDataService
       UpdatedAt = DateTime.UtcNow,
     }).ToList();
     await dbContext.BulkInsertAsync(books);
-    await dbContext.SaveChangesAsync();
+    dbContext.SaveChanges();
     return newBooks.Count();
   }
 }
