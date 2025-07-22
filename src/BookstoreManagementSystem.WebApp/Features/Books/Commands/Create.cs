@@ -45,11 +45,12 @@ public class Create
     }
   }
 
-  public class Handler(BookstoreDbContext context)
+  public class Handler(BookstoreDbContext context, Logger<Handler> logger)
     : IRequestHandler<Command, BookEnvelope>
   {
     public async Task<BookEnvelope> Handle(Command message, CancellationToken cancellationToken)
     {
+      logger.LogInformation("Creating Book");
       var authors = new List<Author>();
       foreach (var authorId in (message.BookData.AuthorList ?? Enumerable.Empty<Guid>()))
       {
@@ -57,6 +58,7 @@ public class Create
 
         if (author == null)
         {
+          logger.LogError("Author not found {}.", authorId);
           throw new Exception($"Author with ID={authorId} not found");
         }
 
@@ -69,6 +71,7 @@ public class Create
         var genre = await context.Genres.FirstOrDefaultAsync(genre => genre.Id == genreId, cancellationToken);
         if (genre == null)
         {
+          logger.LogError("Genre not found {}.", genreId);
           throw new Exception($"Genre with ID={genreId} not found");
         }
 
@@ -96,6 +99,7 @@ public class Create
       );
 
       await context.SaveChangesAsync(cancellationToken);
+      logger.LogInformation("Book created");
       return new BookEnvelope(book);
     }
   }
