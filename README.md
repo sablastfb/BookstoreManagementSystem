@@ -124,6 +124,32 @@ A specialized utility library designed to simulate realistic third-party API int
 
 ---
 
+## Book Import Algorithm Implementation
+
+### **Optimized Duplicate Detection Strategy**
+
+The book import process implements an efficient algorithm designed to handle large datasets while providing fuzzy matching capabilities:
+
+**Algorithm Steps:**
+
+1. **Database Preparation**
+    - Load all existing book titles from the database
+    - Apply normalization to all strings (trimming, case conversion)
+    - Create both a List and HashSet of normalized titles for dual-purpose lookup
+
+2. **Import Processing**
+    - Retrieve new books from the external data source
+    - Iterate through each candidate book title
+
+3. **Duplicate Detection Logic**
+    - **Primary Check**: Use HashSet for exact match detection with O(log n) complexity
+    - **Fuzzy Matching**: Apply FuzzySharp library for similarity comparison against the normalized title list
+    - **Acceptance Criteria**: Books passing both exact and fuzzy match thresholds are added to the import queue
+
+4. **Batch Processing**
+    - Collect all validated books into a single collection
+    - Execute bulk insert operation to minimize database round trips
+
 ## Testing Framework
 
 ### Unit Testing
