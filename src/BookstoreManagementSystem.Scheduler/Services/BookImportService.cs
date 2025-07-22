@@ -8,8 +8,8 @@ public class BookImportService(BookstoreDbContext dbContext, IGetFakeDataService
 {
   public async Task<int>  ImportBooksAsync()
   {
-    var books = await getFakeData.GetFakeBooks(1, 100);
-    
+    var books = await getFakeData.GetFakeBooks(1, 100); 
+    // implement here
     return  await dbContext.Books.CountAsync();
   }
 }
