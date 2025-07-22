@@ -1,3 +1,4 @@
+using System.Reflection;
 using BookstoreManagementSystem.WebApp;
 using BookstoreManagementSystem.WebApp.Infrastructure;
 using BookstoreManagementSystem.WebApp.Infrastructure.Errors;
@@ -11,8 +12,13 @@ builder.Services.AddLocalization(x => x.ResourcesPath = "Resources");
 builder.Services.AddDbContext<BookstoreDbContext>(options =>
   options.UseNpgsql(builder.Configuration.GetConnectionString("BookstoreDb")));
 
+
 builder.Services.AddSwaggerGen(x =>
 {
+  var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+  var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+  x.IncludeXmlComments(xmlPath);
+  
   x.SwaggerDoc("v1", new OpenApiInfo { Title = "Bookstore API", Version = "v1" });
   x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
   {

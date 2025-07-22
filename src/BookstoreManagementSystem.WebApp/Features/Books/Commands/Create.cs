@@ -45,7 +45,7 @@ public class Create
     }
   }
 
-  public class Handler(BookstoreDbContext context, Logger<Handler> logger)
+  public class Handler(BookstoreDbContext context, ILogger<Handler> logger)
     : IRequestHandler<Command, BookEnvelope>
   {
     public async Task<BookEnvelope> Handle(Command message, CancellationToken cancellationToken)

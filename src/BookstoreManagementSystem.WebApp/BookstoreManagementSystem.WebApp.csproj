@@ -34,4 +34,7 @@
     <EmbeddedResource Include="Features\**\*.sql" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
 </Project>

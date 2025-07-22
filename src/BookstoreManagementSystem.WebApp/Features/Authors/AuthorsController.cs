@@ -14,6 +14,10 @@ namespace BookstoreManagementSystem.WebApp.Features.Authors;
 [ApiVersion("1.0")]
 public class AuthorsController(IMediator mediator) : Controller
 {
+  /// <summary>
+  /// Retrieves a list of all products
+  /// </summary>
+  /// <returns>A list of product items</returns>
   [HttpPost]
   [Authorize(Roles = JwtIssuerOptions.Admin)]
   public Task<AuthorEnvelope> Create(
