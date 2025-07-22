@@ -1,6 +1,8 @@
-﻿namespace BookstoreManagementSystem.Scheduler.Services;
+﻿using BookstoreManagementSystem.Scheduler.Models;
 
-public class IGetFakeDataService
+namespace BookstoreManagementSystem.Scheduler.Services;
+
+public interface IGetFakeDataService
 {
-  
+  Task<List<Book>> GetFakeBooks(int count, int typoCount = 0);
 }

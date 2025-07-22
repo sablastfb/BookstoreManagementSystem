@@ -99,13 +99,13 @@ app.MapGet("/getBooks/{count}/{typoCount}", async (int count, int typoCount,ICon
         AuthorList = randomBook.BookData.AuthorList,
         GenreList = randomBook.BookData.GenreList,
         Price = randomBook.BookData.Price,
-        Title = TypoGenerator.AddTypo(randomBook.BookData.Title),
+        Title = TypoGenerator.AddTypo(randomBook.BookData.Title, 0.5f),
       }
     };
     books.Add(book);
   }
   
-  return Results.Ok(books);
+  return Results.Ok(books.Select(b => b.BookData));
 });
 
 
