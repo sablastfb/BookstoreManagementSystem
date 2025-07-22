@@ -1,16 +1,16 @@
-﻿
-using BookstoreManagementSystem.Scheduler.Models;
+﻿using BookDomain = BookstoreManagementSystem.WebApp.Domain.Book;
 using BookstoreManagementSystem.WebApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using FuzzySharp;
 using Microsoft.Extensions.Logging;
+using Book = BookstoreManagementSystem.Scheduler.Models.Book;
 
 namespace BookstoreManagementSystem.Scheduler.Services;
 
 public class BookImportService(BookstoreDbContext dbContext, IGetFakeDataService getFakeData,  ILogger<BookImportService> logger): IBookImportService
 {
   private const int BatchSize = 5000;
-  private const int SimilarityThreshold = 89; 
+  private const int SimilarityThreshold = 95; 
   public async Task<int>  ImportBooksAsync()
   {
     var booksToImport = await getFakeData.GetFakeBooks(500, 500); 
@@ -44,7 +44,15 @@ public class BookImportService(BookstoreDbContext dbContext, IGetFakeDataService
       existingTitlesList.Add(normalizedTitle);
       existingTitlesSet.Add(normalizedTitle);
     }
-
-    return 2;
+    List<BookDomain> books = newBooks.Select(b => new BookDomain
+    {
+      Title = b.Title,
+      Price = b.Price,
+      CreatedAt = DateTime.UtcNow,
+      UpdatedAt = DateTime.UtcNow,
+    }).ToList();
+    await dbContext.BulkInsertAsync(books);
+    await dbContext.SaveChangesAsync();
+    return newBooks.Count();
   }
 }
