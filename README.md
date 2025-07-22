@@ -99,7 +99,7 @@ Custom SQL queries are maintained in separate `.sql` files to leverage IDE suppo
 
 ## Data Generator
 
-A specialized utility library designed to simulate realistic third-party API integration:
+A specialized utility library designed to simulate realistic third-party API integration with Bogus:
 
 **Features:**
 - **JWT Authentication** for secure API communication
