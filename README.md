@@ -117,7 +117,7 @@ A specialized utility library designed to simulate realistic third-party API int
 **Implementation**: Quartz.NET
 
 **Configuration:**
-- **Execution Schedule**: Hourly intervals, continuous operation
+- **Execution Schedule**: Hourly intervals, continuous operation, set with cron expression
 - **Primary Job**: `BookImportJob` handles bulk data import operations
 - **Data Source**: Mock data provided by DataGenerator with authenticated client simulation
 - **Error Simulation**: Includes intentional typos to test matching resilience
