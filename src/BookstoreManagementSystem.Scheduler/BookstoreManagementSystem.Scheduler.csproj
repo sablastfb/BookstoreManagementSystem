@@ -7,4 +7,16 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FuzzySharp" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Quartz" />
+    <PackageReference Include="Quartz.Extensions.Hosting" />
+    <PackageReference Include="Z.EntityFramework.Extensions.EFCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BookstoreManagementSystem.WebApp\BookstoreManagementSystem.WebApp.csproj" />
+  </ItemGroup>
+
 </Project>

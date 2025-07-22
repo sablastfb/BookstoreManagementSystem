@@ -31,11 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Books\Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="Features\**\*.sql" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
 </Project>
