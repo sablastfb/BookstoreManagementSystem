@@ -15,9 +15,8 @@ namespace BookstoreManagementSystem.WebApp.Features.Authors;
 public class AuthorsController(IMediator mediator) : Controller
 {
   /// <summary>
-  /// Retrieves a list of all products
+  /// Creates new Author
   /// </summary>
-  /// <returns>A list of product items</returns>
   [HttpPost]
   [Authorize(Roles = JwtIssuerOptions.Admin)]
   public Task<AuthorEnvelope> Create(
@@ -25,11 +24,19 @@ public class AuthorsController(IMediator mediator) : Controller
     CancellationToken cancellationToken
   ) => mediator.Send(command, cancellationToken);
 
+  
+  /// <summary>
+  /// Returns author by id 
+  /// </summary>
   [HttpGet("{id}")]
   [Authorize(Roles = $"{JwtIssuerOptions.Admin},{JwtIssuerOptions.Reader}")]
   public Task<AuthorEnvelope> Get(Guid id, CancellationToken cancellationToken) =>
     mediator.Send(new Get.Query(id), cancellationToken);
 
+  
+  /// <summary>
+  /// Returns list of authors 
+  /// </summary>
   [HttpGet]
   [Authorize(Roles = $"{JwtIssuerOptions.Admin},{JwtIssuerOptions.Reader}")]
   public Task<AuthorsEnvelope> List(
@@ -38,13 +45,18 @@ public class AuthorsController(IMediator mediator) : Controller
     CancellationToken cancellationToken) 
     => mediator.Send(new List.Query(limit, offset), cancellationToken);
 
+  /// <summary>
+  /// Updates author
+  /// </summary>
   [HttpPut]
   [Authorize(Roles = JwtIssuerOptions.Admin)]
   public Task<AuthorEnvelope> Update(
     [FromBody] Update.Command command, CancellationToken cancellationToken) =>
     mediator.Send(command, cancellationToken);
 
-  
+  /// <summary>
+  /// Delete author
+  /// </summary>
   [HttpDelete]
   [Authorize(Roles = JwtIssuerOptions.Admin)]
   public Task Delete(Guid id, CancellationToken cancellationToken) =>
