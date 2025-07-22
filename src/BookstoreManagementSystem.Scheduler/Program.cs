@@ -25,6 +25,7 @@ var builder = Host.CreateDefaultBuilder(args)
 
     services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
     services.AddScoped<IBookImportService, BookImportService>();
+    services.AddScoped<IGetFakeDataService, GetFakeDataService>();
   });
 
 await builder.Build().RunAsync();

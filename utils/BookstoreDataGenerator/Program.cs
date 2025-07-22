@@ -41,18 +41,8 @@ app.MapPost("/addGenres", async (IConfiguration configuration) =>
 app.MapPost("/addBooks", async (AddRequest request, IConfiguration configuration) =>
 {
   var logInClient = await LogInClientUntil.LogInClient(configuration);
-  
-  var authorsResponse = await logInClient.GetAsync("/api/v1/Authors");
-  authorsResponse.EnsureSuccessStatusCode();
-  var authorContent = await authorsResponse.Content.ReadAsStringAsync();
-  var authors = JsonSerializer.Deserialize<AuthorsResponse>(authorContent);
-  
-  var genreResponse = await logInClient.GetAsync("/api/v1/Genres");
-  authorsResponse.EnsureSuccessStatusCode();
-  var genreContent = await genreResponse.Content.ReadAsStringAsync();
-  var genres = JsonSerializer.Deserialize<GenreResponse>(genreContent);
-  
-  var books = BookstoreDataFaker.GenerateFakeBook(request.Count, authors!.Authors, genres!.Genres);
+  var books = await FakerUtil.GenerateBooks(request.Count, logInClient);
+
   foreach (var book in books)
   {
     var bookData = new { bookData = new
@@ -90,5 +80,33 @@ app.MapPost("/addReviews", async (AddRequest request, IConfiguration configurati
 
   return Results.Ok();
 });
+
+app.MapGet("/getBooks/{count}/{typoCount}", async (int count, int typoCount,IConfiguration configuration) =>
+{
+  var logInClient = await LogInClientUntil.LogInClient(configuration);
+  var books = await FakerUtil.GenerateBooks(count, logInClient);
+  
+  // Simulate typos
+  for (int i = 0; i < typoCount; i++)
+  {
+    Random random = new Random();
+    int randomIndex = random.Next(books.Count);
+    var randomBook = books[randomIndex];
+    var book = new Book()
+    {
+      BookData = new BookData()
+      {
+        AuthorList = randomBook.BookData.AuthorList,
+        GenreList = randomBook.BookData.GenreList,
+        Price = randomBook.BookData.Price,
+        Title = TypoGenerator.AddTypo(randomBook.BookData.Title),
+      }
+    };
+    books.Add(book);
+  }
+  
+  return Results.Ok(books);
+});
+
 
 app.Run();

@@ -35,3 +35,7 @@ Content-Type: application/json
   "count": 105
 }
 
+### Get fake books with real athors and geres
+GET {{baseUrl}}/getBooks/100/10
+Content-Type: application/json
+
